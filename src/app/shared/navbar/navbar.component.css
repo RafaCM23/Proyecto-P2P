@@ -1,0 +1,11 @@
+h3{
+    color: rgb(0, 127, 206);
+    font-weight: bolder;
+    font-size: 3em;
+    
+}
+
+.explorar{
+    margin-right: 3em;
+}
+.navbar-nav > li > .dropdown-menu { background-color: rgba(177, 177, 177, 0.662); }

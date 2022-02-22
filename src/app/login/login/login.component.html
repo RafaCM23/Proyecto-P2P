@@ -1,0 +1,39 @@
+
+<div class="container" style="height: 110vh">
+        
+		<div class="row text-center login-page" >
+			<div class="col-md-12 login-form rounded" style=" height: 450px;">
+				<form method="post"> 
+					<div class="row">
+						<div class="col-md-12 login-form-header">
+							<p class="login-form-font-header">Login</p>
+            </div>
+					</div>
+                    <div class="input-group mb-3 login-form-row">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span><!--En el futuro se hara login con email o nick-->
+                        <input type="text" class="form-control"  placeholder="Email"
+                        [(ngModel)]="email" required name="email">
+                      </div>
+                      <div class="input-group mb-3 login-form-row">
+                        <span class="input-group-text" ><i class="fa fa-lock"></i></span>
+                        <input type="password" class="form-control"  placeholder="Contraseña" 
+                        [(ngModel)]="password" required name="password">
+                      </div>
+                      <div class="row">
+						<div class="col-md-12 login-form-row mt-2 mb-3">
+							<button class="btn-lg btn-info" (click)="login()">Entrar</button>
+						</div>
+					</div>
+                      <div class="row">
+                          <a href="#" class="link-secondary">Continuar sin sesion</a>
+                          <a [routerLink]="['/register']" >No tengo cuenta</a>
+                      </div>
+					
+                      
+				</form>
+			</div>
+		</div>
+		
+	</div>
+
+

@@ -1,0 +1,28 @@
+.opcion1{
+    font-size: 1.5em;
+}
+.opcion2{
+    font-size: 1em;
+}
+.opciones{
+    height: 100vh;
+}
+a{
+    color: white;
+    text-decoration:none;
+
+}
+a:focus{
+    color: rgb(23, 117, 168);
+}
+a:hover{
+    color: rgb(80, 194, 255);
+}
+
+.show{
+    color: black;
+}
+.barra{
+    padding-left: 0;
+    padding-top: 0;
+}

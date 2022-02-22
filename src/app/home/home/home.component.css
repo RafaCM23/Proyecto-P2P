@@ -1,0 +1,32 @@
+h3{
+    color: rgb(0, 127, 206);
+    font-weight: bolder;
+    font-size: 3em;
+    
+}
+
+.explorar{
+    margin-right: 3em;
+}
+.navbar-nav > li > .dropdown-menu { background-color: rgba(177, 177, 177, 0.662); }
+img{
+    border-radius: 4px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    padding: 1%;
+}
+.card{
+    margin-top: 2em;
+    transition: all .20s ease-in-out
+}
+.card:hover{
+    transform: translateY(-10px);
+    transition: all .20s ease-in-out;
+}
+
+body{
+    background-color: #56638A!important;
+    height: 100vh;
+}

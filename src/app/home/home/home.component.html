@@ -1,0 +1,24 @@
+<div class="py-5" style="height: 100vh;">
+  <div class="container">
+
+
+    <div class="row hidden-md-up">
+      <div class="col-md-4 col-sm-6" *ngFor="let anuncio of anuncios">
+        <div class="card" style="height: 95%;">
+          <div class="card-block">
+            <img src={{anuncio.img}} alt="producto">
+            <h4 class="card-title">{{anuncio.titulo}}</h4>
+            <h6 class="card-subtitle text-muted">{{anuncio.descripcion}}</h6>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<a href="/login">Login</a>
+<br>
+<a href="/register">Register</a>
+

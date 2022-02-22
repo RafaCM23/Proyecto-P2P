@@ -1,0 +1,28 @@
+.misdatos-page {
+    padding: 5% 0 0;
+ 
+    min-width:70vw;
+    height: 10em;
+    position: relative;
+   
+}
+
+.misdatos-form {
+	box-shadow: 8px 8px 15px 10px rgba(41, 41, 41, 0.738);
+	background-color: white;
+    height: 35em!important;
+    
+}
+.form-group{
+    margin-top: 2em;
+}
+.control-label{
+    font-size: 1.5em;
+}
+.botones{
+    text-align: center;
+    margin-top: 2em;
+}
+.btn{
+    margin: 2em
+}

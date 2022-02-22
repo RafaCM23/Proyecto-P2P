@@ -1,0 +1,19 @@
+<div class="row text-center misanuncios-page" >
+    <div class="col-md-12 misanuncios-form rounded" >
+   
+        <div class="row hidden-md-up">
+            <div class="col-md-4 col-sm-6 carta" *ngFor="let anuncio of misAnuncios">
+              <div class="card" style="height: 95%;">
+                <div class="card-block">
+                  <img src={{anuncio.img}} alt="producto">
+                  <h4 class="card-title">{{anuncio.titulo}}</h4>
+                  <h6 class="card-subtitle text-muted">{{anuncio.descripcion}}</h6>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+    
+    
+</div>
+</div>
