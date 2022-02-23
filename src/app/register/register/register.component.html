@@ -81,7 +81,7 @@
               </span>
                      
                     	<div class="col-md-12 login-form-row mt-2 mb-3">
-                        <button class="btn-lg btn-info" type="submit" [disabled]="registroForm.invalid" (click)="validar()">Registrarse</button>
+                        <button class="btn-lg btn-info" type="submit" (click)="validar()">Registrarse</button>
                         
                       </div>
 
@@ -93,6 +93,12 @@
 					
 
 				</form>
+        <h2>Form invalid</h2>
+<pre>{{ registroForm.invalid | json }}</pre>
+<h2>Correo errores</h2>
+<pre>{{ registroForm.controls['email'].errors | json }}</pre>
+<h2>Nick errores</h2>
+<pre>{{ registroForm.controls['usuario'].errors | json }}</pre>
 			</div>
 		</div>
 	</div>

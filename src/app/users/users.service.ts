@@ -34,15 +34,5 @@ export class UsersService {
     return this.http.post(url, body, {headers:cabecera});
   }
 
-  setToken(token: string) {
-    this.cookies.set("token", token);
-  }
-  getToken() {
-    return this.cookies.get("token");
-  }
-  delToken(){
-    this.cookies.deleteAll("token");
-  }
-
 
 }

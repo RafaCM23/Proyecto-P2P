@@ -7,23 +7,35 @@ import { MisDatosComponent } from './mis-datos/mis-datos.component';
 import { MisAnunciosComponent } from './mis-anuncios/mis-anuncios.component';
 import { MyAccountService } from './my-account.service';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
+const routes: Routes = [
 
+  {
+    path: '', component: MainComponent, children: [
+      { path: '', component: MisDatosComponent },
+      { path: 'misdatos', component: MisDatosComponent },
+      { path: 'misanuncios', component: MisAnunciosComponent },
+      { path: '**', component: MisDatosComponent },
+    ]
+  },
+
+];
 
 @NgModule({
   declarations: [
     MainComponent,
-    SidebarComponent,
     MisDatosComponent,
-    MisAnunciosComponent
+    MisAnunciosComponent,
+    SidebarComponent
   ],
-  imports:[
+  imports: [
+    RouterModule.forChild(routes),
     CommonModule,
-    AppRoutingModule,
     FormsModule
-    ],
-  providers:[
-   MyAccountService
+  ],
+  providers: [
+    MyAccountService
   ]
 })
 export class MyAccountModule { }

@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AnuncioComponent } from './anuncio/anuncio.component';
-import { CreaAnuncioComponent } from './crea-anuncio/crea-anuncio.component';
-import { EditaAnuncioComponent } from './edita-anuncio/edita-anuncio.component';
+import { AnunciosService } from './anuncios.service';
+import { Routes } from '@angular/router';
+import { HomeModule } from '../home/home.module';
+import { CrearAnuncioComponent } from './crear-anuncio/crear-anuncio.component';
 
 
 
 @NgModule({
   declarations: [
-    AnuncioComponent,
-    CreaAnuncioComponent,
-    EditaAnuncioComponent
+  
+    CrearAnuncioComponent
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  providers:[AnunciosService]
 })
 export class AnunciosModule { }

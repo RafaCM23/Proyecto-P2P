@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
-import { RouterModule } from '@angular/router';
-import { UsersService } from '../users/users.service';
+import { RouterModule, Routes } from '@angular/router';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ValidatorService } from './validator.service';
 
 
+const routes: Routes = [
+
+  {path:'',component:RegisterComponent}
+  
+];
 
 @NgModule({
   declarations: [
@@ -14,10 +17,8 @@ import { ValidatorService } from './validator.service';
   ],
   imports: [
     CommonModule,
-    RouterModule
-  ],
-  providers:[
-    ValidatorService
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ]
 })
 export class RegisterModule { }

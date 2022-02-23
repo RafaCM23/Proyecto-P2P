@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { usuario } from 'src/app/anuncios/anuncio.interface';
+import { AuthService } from 'src/app/auth/auth.service';
 import { UsersService } from 'src/app/users/users.service';
 import Swal from 'sweetalert2';
 
@@ -18,48 +18,35 @@ export class RegisterComponent implements OnInit {
 
   
 
-  constructor(private router: Router, private userService: UsersService, private fb: FormBuilder,private emailValidator:EmailvalidatorService,
+  constructor(private router: Router,private userService:UsersService,private authService: AuthService, private fb: FormBuilder,private emailValidator:EmailvalidatorService,
     private nickValidator:NickOcupadoService) { }
 
   ngOnInit(): void {
-    
+    this.registroForm.reset({
+      terminos:false,
+      mayorEdad:false
+    })
   }
 
   registroForm: FormGroup = this.fb.group({
     nombre: ['',[Validators.required, Validators.minLength(4)]],
-    usuario: ['',[Validators.required, Validators.minLength(5)],[this.nickValidator]],
+    usuario: ['',[Validators.required, Validators.minLength(5),this.usuarioValido],[this.nickValidator]],
     contrasenia: ['',[Validators.required, Validators.minLength(5)]],
     recontrasenia: ['',[Validators.required, Validators.minLength(5)]],
-    email: ['',[Validators.required],[this.emailValidator]],
+    email: ['',[Validators.required,this.emailValido],[this.emailValidator]],
     mayorEdad: [false,Validators.requiredTrue],
     terminos: [false, Validators.requiredTrue],
-  },{
-    validators:[this.contraValida('contrasenia','recontrasenia'),
-    this.emailValido('email'),this.usuarioValido('usuario')],
-   })
-
+  }
+  ,{
+    validators:[this.contraValida('contrasenia','recontrasenia')],
+   }
+  )
 
   campoEsValido(campo:string){
     return this.registroForm.controls[campo].errors && this.registroForm.controls[campo].touched;
   }
 
 
-  // checkboxValido(campo:string){
-  //   return (formGroup: AbstractControl): ValidationErrors | null =>{
-
-
-  //     if( formGroup.get(campo)?.errors && !formGroup.get(campo)?.touched){
-  //       formGroup.get(campo)?.setErrors({noChecked:true});
-
-  //         return {noChecked:true};
-  //       }
-  //     else{
-  //       formGroup.get(campo)?.setErrors(null);
-  //      return null;
-  //     }
-  //   }
- 
-  // }
   contraValida(psw1:string, psw2:string){
     return (formGroup: AbstractControl): ValidationErrors | null =>{
       const pass1 = formGroup.get(psw1)?.value;
@@ -79,12 +66,14 @@ export class RegisterComponent implements OnInit {
   get emailErrorMsg(): string {
     
     const errors = this.registroForm.get('email')?.errors!;
-    if ( errors['required'] ) {
-      return 'Email es obligatorio';
-    } else if ( errors['noValido'] ) {
-      return 'El email no cumple el formato correcto';
-    } else if ( errors['emailOcupado'] ) {
+    if(errors['emailOcupado']){
       return 'El email ya está ocupado';
+    }
+    else if ( errors['noValido'] ) {
+      return 'El email no cumple el formato correcto';
+    } 
+    else if ( errors['required'] ) {
+      return 'Email es obligatorio';
     }
 
     return '';
@@ -103,44 +92,31 @@ export class RegisterComponent implements OnInit {
     return '';
   }
 
-  usuarioValido(usuario:string){
+  usuarioValido(control:FormControl): ValidationErrors | null{
     
-    return (formGroup: AbstractControl): ValidationErrors | null =>{
-
-      const user = formGroup.get(usuario)?.value;
-     
-  
-      if(user.length<5){
-        formGroup.get(usuario)?.setErrors({noValido:true});
-        return {noValido:true}
+      const user = control?.value;  
+      if(user?.length<5){
+        return { noValido:true }
       }
 
-
-      formGroup.get(usuario)?.setErrors({noValido:false});
       
       return null
-    }
+    
 }
-  emailValido(email:string){
-    return (formGroup: AbstractControl): ValidationErrors | null =>{
+  emailValido(control:FormControl): ValidationErrors | null{
+    
 
-      const correo = formGroup.get(email)?.value;
-     
+      const correo = control?.value;
      var regex = new RegExp('^[^@]+@[^@]+\.[a-zA-Z]{2,}$')
      var resultado=regex.test(correo);
       if(resultado!=true){
-        formGroup.get(email)?.setErrors({noValido:true});
-        return {noValido:true}
+        return { noValido:true}
       }
 
-
-      formGroup.get(email)?.setErrors(null);
       
       return null
     }
-    
-
-  }
+  
  
   
   
@@ -150,6 +126,8 @@ export class RegisterComponent implements OnInit {
 
     if ( this.registroForm.invalid)  {
       this.registroForm.markAllAsTouched();
+      console.log("invalido");
+      return
     }
     else{
       const correo = this.registroForm.get('email')?.value;
@@ -163,11 +141,9 @@ export class RegisterComponent implements OnInit {
      this.registroForm.reset();
     }
     }
-   enviarDatos(correo:string,password:string,name:string,nickname:string){
-    //falta enviar nombre, nick
-      
+   enviarDatos(correo:string,password:string,name:string,nickname:string){      
       this.userService.register(correo,password,name,nickname).subscribe(data => {
-        this.userService.setToken(data.token);
+        this.authService.setToken(data.token);
         this.router.navigateByUrl('/');
       },
       error=>{

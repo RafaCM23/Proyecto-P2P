@@ -22,6 +22,8 @@ export class NickOcupadoService implements AsyncValidator{
     .pipe(
       //devuelve 404 si no lo encuentra y 200 si lo encuentra
       map( resp => {
+        console.log(resp);
+        
         return ( resp!=null ) 
             ? null
             : { nickOcupado: true }

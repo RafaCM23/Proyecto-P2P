@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
 import { anuncio } from 'src/app/anuncios/anuncio.interface';
 import { AnunciosService } from 'src/app/anuncios/anuncios.service';
 

@@ -12,13 +12,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { MyAccountModule } from './my-account/my-account.module';
+import { RegisterModule } from './register/register.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent
+    AppComponent
   ],
   imports: [
     AppRoutingModule,
@@ -29,7 +28,8 @@ import { MyAccountModule } from './my-account/my-account.module';
     ReactiveFormsModule,
     HomeModule,
     SharedModule,
-    MyAccountModule
+    MyAccountModule,
+    RegisterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
