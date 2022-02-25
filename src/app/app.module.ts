@@ -14,7 +14,6 @@ import { SharedModule } from './shared/shared.module';
 import { MyAccountModule } from './my-account/my-account.module';
 import { RegisterModule } from './register/register.module';
 
-
 @NgModule({
   declarations: [
     AppComponent
@@ -29,7 +28,8 @@ import { RegisterModule } from './register/register.module';
     HomeModule,
     SharedModule,
     MyAccountModule,
-    RegisterModule
+    RegisterModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

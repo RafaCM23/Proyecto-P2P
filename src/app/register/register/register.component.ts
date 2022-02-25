@@ -15,6 +15,12 @@ import { NickOcupadoService } from './nick-ocupado.service';
 })
 export class RegisterComponent implements OnInit {
 
+//Si comentamos la linea de validators: this.contra valida y ponemos bien
+//el usuario o el correo el formulario es VALIDO
+
+//Si no comentamos esa linea, cuando la contraseña es valida (la dos) el formulario es VALIDO
+
+
 
   
 

@@ -9,15 +9,15 @@ export class AuthService {
 
 
   getToken(){
-    return this.cookies.get("token");
+    return this.cookies.get("tokenP2P");
   }
 
   setToken(token:string){
-    this.cookies.set("token",token);
+    this.cookies.set("tokenP2P",token);
   }
   
   delToken(){
-    this.cookies.delete("token");
+    this.cookies.delete("tokenP2P");
   }
 
 

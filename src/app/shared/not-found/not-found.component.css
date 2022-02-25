@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+:root {
+  --blue: #0e0620;
+  --white: #fff;
+  --green: #2ccf6d;
+}
+button {
+  font-family:"Nunito Sans";
+}
+
+h1 {
+  font-size: 7.5em;
+  margin: 15px 0px;
+  font-family:"Nunito Sans";
+  font-weight:bold;
+}
+h2 {
+  font-weight:bold;
+}
+.btn {
+  z-index: 1;
+  overflow: hidden;
+  background: transparent;
+  position: relative;
+  padding: 8px 50px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1em;
+  letter-spacing: 2px;
+  transition: 0.2s ease;
+  font-weight: bold;
+  margin: 5px 0px;
+}
+.green {
+    border: 4px solid rgb(0, 127, 206);
+    color: black;
+}
+.btn:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0%;
+      height: 100%;
+      background: rgb(0, 127, 206);
+      z-index: -1;
+      transition: 0.2s ease;
+}
+.btn:hover {
+      color: white;
+      background: rgb(0, 127, 206);
+      transition: 0.2s ease;
+    
+    }
+  
+
+
+
+.notFound-page {
+    padding: 3% 2% 0%;
+    max-width: 2000px;
+    position: relative;
+
+
+  }
+
+  
+.contenido {
+
+      box-shadow: 8px 8px 15px 10px rgba(41, 41, 41, 0.738);
+      background-color: white;
+      height: 80vh;
+      
+  }

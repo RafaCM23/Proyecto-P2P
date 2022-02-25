@@ -8,15 +8,17 @@ import { MisAnunciosComponent } from './mis-anuncios/mis-anuncios.component';
 import { MyAccountService } from './my-account.service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../AuthGuard';
+import { NotFoundComponent } from '../shared/not-found/not-found.component';
 
 const routes: Routes = [
 
   {
     path: '', component: MainComponent, children: [
-      { path: '', component: MisDatosComponent },
-      { path: 'misdatos', component: MisDatosComponent },
-      { path: 'misanuncios', component: MisAnunciosComponent },
-      { path: '**', component: MisDatosComponent },
+      { path: '',canActivate:[AuthGuard], component: MisDatosComponent },
+      { path: 'misdatos',canActivate:[AuthGuard], component: MisDatosComponent },
+      { path: 'misanuncios',canActivate:[AuthGuard], component: MisAnunciosComponent },
+      { path: '**',canActivate:[AuthGuard], component: NotFoundComponent },
     ]
   },
 

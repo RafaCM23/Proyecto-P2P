@@ -3,12 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-crear-anuncio',
-  templateUrl: './crear-anuncio.component.html',
-  styleUrls: ['./crear-anuncio.component.css']
+  selector: 'app-editar-anuncio',
+  templateUrl: './editar-anuncio.component.html',
+  styleUrls: ['./editar-anuncio.component.css']
 })
-export class CrearAnuncioComponent implements OnInit {
-
+export class EditarAnuncioComponent implements OnInit {
 
   @ViewChild('miFormulario') miFormulario!: NgForm;
   
