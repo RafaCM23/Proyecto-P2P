@@ -1,6 +1,8 @@
 import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { anuncio } from '../anuncio.interface';
+import { AnunciosService } from '../anuncios.service';
 
 @Component({
   selector: 'app-crear-anuncio',
@@ -12,15 +14,20 @@ export class CrearAnuncioComponent implements OnInit {
 
   @ViewChild('miFormulario') miFormulario!: NgForm;
   
+  anuncio:anuncio={
+    autor:{
+      id:1
+    },
+    id:5,
+    img:"",
+    titulo:"",
+    descripcion:"",
+    comentarios:[]
 
-  formulario = {
-    img:'',
-    titulo:'',
-    descripcion:''
   }
 
 
-  constructor() { }
+  constructor(private anuncioService:AnunciosService) { }
 
   ngOnInit(): void {
   }
@@ -46,7 +53,15 @@ export class CrearAnuncioComponent implements OnInit {
       alert("errores")
     }
     else{
-      alert("guardado");
+      
+      this.anuncioService.postAnuncio(this.anuncio).subscribe(
+        resp=>{
+          alert("guardado");
+        }
+      ),error=>{
+        console.log("Error al guardar Anuncio")
+      }
+      
     }
 
   }

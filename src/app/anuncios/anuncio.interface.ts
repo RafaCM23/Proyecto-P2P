@@ -3,7 +3,10 @@ export interface anuncio{
     img:String,
     titulo:String,
     descripcion:String,
-    comentarios: comentario[];
+    comentarios: comentario[],
+    autor:{
+        id:Number
+    }
 }
 
 export interface comentario{
@@ -18,5 +21,6 @@ export interface usuario{
     name:String,
     nickname:String,
     email:String,
-    provincia:String
+    provincia:String,
+    token:String
 }

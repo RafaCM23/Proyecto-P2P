@@ -19,15 +19,26 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UsersService, private router: Router, private authService: AuthService) { }
 
+
   ngOnInit(): void {
   }
 
+  compruebaToken(){
+   const tokenValido=this.authService.compruebaToken();
+   if(tokenValido){console.log("Token Valido")}
+   else{console.log("Token Invalido / Sin Token")}
+   return tokenValido
+    
+  }
   login(){
     
     this.userService.compruebaLogin(this.email,this.password)
     .subscribe( resp => {
-      this.authService.setToken(JSON.stringify(resp));
-      this.router.navigateByUrl('');
+      this.authService.setToken(JSON.stringify(resp["jwt-token"]));
+      this.router.navigate(['/'])
+      .then(() => {
+        window.location.reload();
+      });
     },error=>{Swal.fire({
       title:error.error.message,
       icon: 'error',

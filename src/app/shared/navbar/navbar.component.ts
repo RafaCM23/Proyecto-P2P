@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
@@ -8,13 +9,23 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private router:Router) { }
 
   ngOnInit(): void {
+    this.estaRegistrado();
   }
 
   logout(){
     this.authService.delToken();
+    this.router.navigate(['/'])
+  .then(() => {
+    window.location.reload();
+  });
+    
   }
 
+  estaRegistrado(){
+    return this.authService.compruebaToken();
+
+  }
 }

@@ -149,7 +149,7 @@ export class RegisterComponent implements OnInit {
     }
    enviarDatos(correo:string,password:string,name:string,nickname:string){      
       this.userService.register(correo,password,name,nickname).subscribe(data => {
-        this.authService.setToken(data.token);
+        this.authService.setToken(JSON.stringify(data["jwt-token"]));
         this.router.navigateByUrl('/');
       },
       error=>{

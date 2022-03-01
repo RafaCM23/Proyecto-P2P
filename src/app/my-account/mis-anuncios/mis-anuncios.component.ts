@@ -16,8 +16,8 @@ export class MisAnunciosComponent implements OnInit {
     this.imprimeAnuncios();
   }
 
-  imprimeAnuncios(){
-    this.servicio.getAnuncios(3).subscribe(
+  imprimeAnuncios(){//cambiar esto para que sea personal
+    this.servicio.getAnuncios(1).subscribe(
       resp=>{
         this.misAnuncios=resp;
       },

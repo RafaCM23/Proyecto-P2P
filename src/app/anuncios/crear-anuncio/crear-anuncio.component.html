@@ -12,7 +12,7 @@
                 
                 <label for="titulo" class="etiqueta">Imagen</label>
                 <div class="form-group subida">
-                    <input type="text" class="form-control" id="imgsrc" aria-describedby="imgsrc" name="img" placeholder="Introduzca la url de la imagen" minlength="10" requiered [ngModel]="formulario.img">
+                    <input type="text" class="form-control" id="imgsrc" aria-describedby="imgsrc" name="img" placeholder="Introduzca la url de la imagen" minlength="10" requiered [ngModel]="anuncio.img">
                     <small id="emailHelp" class="form-text text-muted">Compruebe que la url a la imagen es válida</small>
                 </div>
                 <div class="wraper mt-5">
@@ -32,13 +32,13 @@
                
                     <div class="form-group">
                       <label for="titulo" class="etiqueta">Título</label>
-                      <input type="text" class="form-control" id="titulo" aria-describedby="titulo" name="titulo" placeholder="Introduzca el Título" required minlength="10" [ngModel]="formulario.titulo">
+                      <input type="text" class="form-control" id="titulo" aria-describedby="titulo" name="titulo" placeholder="Introduzca el Título" required minlength="10" [ngModel]="anuncio.titulo">
                       <small id="emailHelp" class="form-text text-muted">Intente que el Título sea breve y concreto. Ej: Portatil 2º Mano</small>
                     </div>
                     <div class="form-group">
                         <label for="descripcion" class="etiqueta">Descripción</label><br>
                         <textarea name="descripcion" id="descripcion" rows="8" aria-describedby="descripcion" name="descripcion" placeholder="Introduzca el la descripción del producto o servicio a vender"
-                        required minlength="10" [ngModel]="formulario.descripcion"></textarea>
+                        required minlength="10" [ngModel]="anuncio.descripcion"></textarea>
                         <br><small id="descripcionTexto" class="form-text text-muted">Aquí puedes contar todo lo que quieras</small>
                       </div>
                     

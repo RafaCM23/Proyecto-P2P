@@ -14,4 +14,11 @@ export class AnunciosService {
 
    return this.http.get<anuncio[]>(url);
   }
+
+  postAnuncio(anuncio:anuncio){
+    const url="http://localhost:8080/anuncios"
+    const body = anuncio;
+
+    return this.http.post(url,body);
+  }
 }

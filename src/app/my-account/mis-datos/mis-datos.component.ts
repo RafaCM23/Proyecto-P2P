@@ -21,19 +21,22 @@ export class MisDatosComponent implements OnInit {
     name:'',
     nickname:'',
     email:'',
-    provincia:''
+    provincia:'',
+    token:''
   };
   copia:usuario={
     id:0,
     name:'',
     nickname:'',
     email:'',
-    provincia:''
+    provincia:'',
+    token:''
   };
   
-  imprimeDatos(){//este 3 se cambia por el id del usuario que tiene que estar en la ruta ?id=x
-    this.servicio.getDatos(3).subscribe(
+  imprimeDatos(){
+    this.servicio.getDatos().subscribe(
       resp=>{
+        console.log(resp);
         this.user=resp;
         this.copia=resp;
       },error=>{
