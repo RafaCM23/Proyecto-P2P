@@ -1,31 +1,24 @@
-@media (max-width: 576px){
-.card{
-    width: 85%;
+h1{
+    color:  rgb(0, 127, 206);
+
+    margin:2em
 }
+.nuevoAnuncio{
+    margin:2em
 }
-@media (min-width: 755px){
-    .misanuncios-page{
-        width: 80vw;
-    }
-    }
-@media (max-width: 755px){
-    .misanuncios-page{
-        width: 60vw;
-    }
-    }
 
 .misanuncios-page {
     padding: 5% 0 0;
     min-width:60vw;
     position: relative;
-   margin-right: 1em;
+
 
 }
 
 .misanuncios-form {
 	box-shadow: 8px 8px 15px 10px rgba(41, 41, 41, 0.738);
 	background-color: white;
-    height: 80vh;
+    height: 100%;
     display: block;
     
 }
@@ -36,7 +29,8 @@
 
 }
 img{
-    width: 100%;
+    width: 150px;
+
     display: block;
     padding: 1%;
 }

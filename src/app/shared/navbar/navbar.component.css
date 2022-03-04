@@ -4,7 +4,9 @@ h3{
     font-size: 3em;
     
 }
-
+.navbar{
+    width: 100%;
+}
 .explorar{
     margin-right: 3em;
 }

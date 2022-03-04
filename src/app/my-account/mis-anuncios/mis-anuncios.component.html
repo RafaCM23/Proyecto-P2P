@@ -1,13 +1,19 @@
-<div class="row text-center misanuncios-page" >
-    <div class="col-md-12 misanuncios-form rounded">
-   
-      <table class="table table-bordered table-striped table-hover mt-4">
+
+<div class="row text-center misanuncios-page container-fluid" >
+    <div class="col-md-12 misanuncios-form rounded d-flex">
+      <div *ngIf="misAnuncios.length==0" class="text-center">
+        <h1>No Hay Anuncios Todavia</h1>
+        <button [routerLink]="['/nuevoAnuncio']" class="btn btn-lg btn-success nuevoAnuncio
+        " >Crear anuncio</button>
+      </div>
+      <table *ngIf="misAnuncios.length>0"class="table-striped table-hover mt-4 display nowrap" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="table" style="width: 100%;">
         <thead>
         <tr>
             <th>ID</th>
             <th>Imagen</th>
             <th>Titulo</th>
             <th>Descripcion</th>
+            <th>Comentarios</th>
             <th>Editar</th>
             <th>Borrar</th>
         </tr>
@@ -22,8 +28,9 @@
               </div></td>
             <td>{{ anuncio.titulo }}</td>
             <td>{{ anuncio.descripcion }}</td>
-            <td><button type="button" class="btn btn-warning">Editar</button></td>
-            <td><button type="button" class="btn btn-danger">Borrar</button></td>
+            <td>{{anuncio.comentarios.length}}</td>
+            <td><button type="button" class="btn btn-warning" [routerLink]="['/editarAnuncio',anuncio.id]"  >Editar</button></td>
+            <td><button type="button" class="btn btn-danger" (click)="borrarAnuncio(anuncio.id)">Borrar</button></td>
             
         </tr>
         </tbody>
@@ -32,3 +39,5 @@
     
 </div>
 </div>
+
+

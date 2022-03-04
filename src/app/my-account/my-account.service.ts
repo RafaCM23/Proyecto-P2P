@@ -31,9 +31,11 @@ export class MyAccountService {
   }
 
 
-  getAnuncios(id:number){
-    const url='http://localhost:8080/misanuncios?autorid='+id
-    return this.http.get<anuncio[]>(url);
+  getAnuncios(){
+    const cabecera = new HttpHeaders()
+    .set('Authorization',`Bearer ${this.authService.getToken()}` || '');
+    const url='http://localhost:8080/misanuncios'
+    return this.http.get<anuncio[]>(url,{headers:cabecera});
   }
 
   

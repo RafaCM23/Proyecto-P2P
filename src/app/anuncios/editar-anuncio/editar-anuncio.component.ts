@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { AnunciosService } from '../anuncios.service';
 import { anuncio, comentario} from '../anuncio.interface';
 import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-editar-anuncio',
   templateUrl: './editar-anuncio.component.html',
@@ -28,11 +29,12 @@ export class EditarAnuncioComponent implements OnInit {
     descripcion:'',
     comentarios: [],
   }
+  id=0;
 
-
-  constructor(private anuncioService:AnunciosService) { }
+  constructor(private anuncioService:AnunciosService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.recogeId();
     this.getAnuncio();
   }
 
@@ -52,9 +54,14 @@ export class EditarAnuncioComponent implements OnInit {
     return this.miFormulario?.controls['descripcion'].invalid 
             && this.miFormulario?.controls['descripcion'].touched;
   }
+  recogeId(){
+    this.route.params.subscribe(params=>{
+      this.id=params['id'];
+    })
+  }
 
   getAnuncio(){
-    this.anuncioService.getAnuncio(2).subscribe(
+    this.anuncioService.getAnuncio(this.id).subscribe(
         resp=>{
           console.log(resp);
           this.formulario.titulo=resp.titulo;
@@ -63,7 +70,12 @@ export class EditarAnuncioComponent implements OnInit {
           this.formulario.id=resp.id;
         },
         error=>{
-          console.log(error);
+          Swal.fire({
+            title:'Error al cargar el anuncio',
+            icon: 'error',
+            confirmButtonText:'ok'
+          }
+        );
         }
     )
   }

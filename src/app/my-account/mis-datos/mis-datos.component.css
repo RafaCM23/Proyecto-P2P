@@ -2,6 +2,7 @@
     .misdatos-page{
         width: 30em;
     }
+    
 }
 @media (min-width: 820px) { 
     .misdatos-page{
@@ -25,6 +26,9 @@
 	background-color: white;
     height: 35em!important;
     
+}
+th,td{
+    word-wrap: break-word;
 }
 .form-group{
     margin-top: 2em;

@@ -10,7 +10,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 const routes: Routes = [
 
   {path:'nuevoAnuncio',component:CrearAnuncioComponent},
-  {path:'editarAnuncio',component:EditarAnuncioComponent}
+  {path:'editarAnuncio/:id',component:EditarAnuncioComponent}
 
 ];
 

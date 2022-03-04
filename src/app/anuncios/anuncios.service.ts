@@ -19,7 +19,7 @@ export class AnunciosService {
   getAnuncio(id:number){
     const cabecera = new HttpHeaders()
     .set('Authorization',`Bearer ${this.authService.getToken()}` || '');
-    const url="http://localhost:8080/mianuncio?id="+id;//id pasada por url
+    const url="http://localhost:8080/mianuncio?id="+id;
     return this.http.get<anuncio>(url,{headers:cabecera});
 
   }
@@ -41,5 +41,13 @@ export class AnunciosService {
     const body = anuncio;
 
     return this.http.post(url,body,{headers:cabecera});
+  }
+
+  deleteAnuncio(id:number){
+    const cabecera = new HttpHeaders()
+    .set('Authorization',`Bearer ${this.authService.getToken()}` || '');
+    const url="http://localhost:8080/misanuncios?id="+id
+   
+    return this.http.delete(url,{headers:cabecera});
   }
 }

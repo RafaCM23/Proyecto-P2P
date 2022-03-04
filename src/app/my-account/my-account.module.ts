@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../AuthGuard';
 import { NotFoundComponent } from '../shared/not-found/not-found.component';
+import { DataTablesModule } from 'angular-datatables';
 
 const routes: Routes = [
 
@@ -34,7 +35,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    FormsModule
+    FormsModule,   
+    DataTablesModule
   ],
   providers: [
     MyAccountService

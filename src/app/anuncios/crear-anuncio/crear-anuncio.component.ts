@@ -1,6 +1,7 @@
 import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { MyAccountService } from 'src/app/my-account/my-account.service';
 import Swal from 'sweetalert2';
@@ -37,7 +38,7 @@ export class CrearAnuncioComponent implements OnInit {
   }
 
 
-  constructor(private anuncioService:AnunciosService, private accountService: MyAccountService) { }
+  constructor(private anuncioService:AnunciosService, private accountService: MyAccountService, private router: Router) { }
 
   ngOnInit(): void {
     this.getUsuario();
@@ -86,9 +87,15 @@ export class CrearAnuncioComponent implements OnInit {
             icon: 'success',
             confirmButtonText:'ok'
           }
-        );
-        },
-      ),error=>{
+        )
+        .then(resultado => {
+          if (resultado.value) {
+              //Dice que si
+              this.router.navigateByUrl("/myaccount/misanuncios")
+          } 
+      });
+
+        },error=>{
         Swal.fire({
           title:'Algo ha salido mal...',
           icon: 'error',
@@ -96,8 +103,7 @@ export class CrearAnuncioComponent implements OnInit {
           confirmButtonText:'ok'
         }
       );
-      }
-      
+      })
     }
 
   }
