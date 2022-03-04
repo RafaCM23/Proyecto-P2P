@@ -23,24 +23,18 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  compruebaToken(){
-   const tokenValido=this.authService.compruebaToken();
-   if(tokenValido){console.log("Token Valido")}
-   else{console.log("Token Invalido / Sin Token")}
-   return tokenValido
-    
-  }
   login(){
     
     this.userService.compruebaLogin(this.email,this.password)
     .subscribe( resp => {
-      this.authService.setToken(JSON.stringify(resp["jwt-token"]));
+      const respuesta=JSON.stringify(resp["jwt-token"]);
+      this.authService.setToken(respuesta.slice(1,respuesta.length-1));
       this.router.navigate(['/'])
       .then(() => {
         window.location.reload();
       });
     },error=>{Swal.fire({
-      title:error.error.message,
+      title:"Error al hacer logging",
       icon: 'error',
       confirmButtonText:'Ok'
     }

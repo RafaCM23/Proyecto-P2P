@@ -13,6 +13,7 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { MyAccountModule } from './my-account/my-account.module';
 import { RegisterModule } from './register/register.module';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RegisterModule } from './register/register.module';
     SharedModule,
     MyAccountModule,
     RegisterModule,
+    DataTablesModule
     
   ],
   providers: [],

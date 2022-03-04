@@ -1,7 +1,9 @@
 import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
+import { AnunciosService } from '../anuncios.service';
+import { anuncio, comentario} from '../anuncio.interface';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-editar-anuncio',
   templateUrl: './editar-anuncio.component.html',
@@ -13,20 +15,33 @@ export class EditarAnuncioComponent implements OnInit {
   
 
   formulario = {
+    id:0,
     img:'',
     titulo:'',
-    descripcion:''
+    descripcion:'',
+    comentarios: null,
+  }
+  anuncio:anuncio={
+    id:0,
+    img:'',
+    titulo:'',
+    descripcion:'',
+    comentarios: [],
   }
 
 
-  constructor() { }
+  constructor(private anuncioService:AnunciosService) { }
 
   ngOnInit(): void {
+    this.getAnuncio();
   }
 
   imgValida(): boolean {
-    return this.miFormulario?.controls['img'].invalid 
-            && this.miFormulario?.controls['img'].touched;
+     const regex:RegExp=/((http:\/\/)|(https:\/\/)).*(\.png|\.jpg|\.jpeg)/gm
+    if(this.formulario.img.length<11 || !regex.test(this.formulario.img)){
+      return false;
+    }
+      return true;
   }
 
   tituloValido(): boolean {
@@ -38,14 +53,58 @@ export class EditarAnuncioComponent implements OnInit {
             && this.miFormulario?.controls['descripcion'].touched;
   }
 
-
+  getAnuncio(){
+    this.anuncioService.getAnuncio(2).subscribe(
+        resp=>{
+          console.log(resp);
+          this.formulario.titulo=resp.titulo;
+          this.formulario.descripcion=resp.descripcion;
+          this.formulario.img=resp.img;
+          this.formulario.id=resp.id;
+        },
+        error=>{
+          console.log(error);
+        }
+    )
+  }
 
   guardar(){
-    if(this.miFormulario.invalid){
-      alert("errores")
+
+    if( !this.imgValida() || this.miFormulario.invalid ){
+      
+      Swal.fire({
+        title:'Formulario no valido',
+        icon: 'error',
+        text:'Compruebe los campos',
+        confirmButtonText:'ok'
+      }
+    );
     }
     else{
-      alert("guardado");
+      this.anuncio.id=this.formulario.id;
+      this.anuncio.titulo=this.formulario.titulo;
+      this.anuncio.descripcion=this.formulario.descripcion;
+      this.anuncio.img=this.formulario.img;
+      this.anuncioService.putAnuncio(this.anuncio).subscribe(
+        resp=>{
+          Swal.fire({
+            title:'Anuncio editado con éxito',
+            icon: 'success',
+            confirmButtonText:'ok'
+          }
+        );
+        },
+        error=>{
+          Swal.fire({
+            title:'Algo ha salido mal...',
+            icon: 'error',
+            text:'Compruebe que el anuncio le pertenece y que los cambios son válidos',
+            confirmButtonText:'ok'
+          }
+        );
+        }
+      )
+      
     }
 
   }

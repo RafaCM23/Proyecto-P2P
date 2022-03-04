@@ -1,9 +1,21 @@
+@media (min-width: 670px) { 
+    .misdatos-page{
+        width: 30em;
+    }
+}
+@media (min-width: 820px) { 
+    .misdatos-page{
+        width: 42em;
+    }
+}
+
 .misdatos-page {
     padding: 5% 0 0;
- 
+    
     height: 10em;
     position: relative;
-    margin-left: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
     
    
 }

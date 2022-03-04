@@ -25,13 +25,10 @@
                              <span class="ms-1  opcion1"> Mis anuncios</span></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a [routerLink]="['misanuncios']" class="nav-link px-0 opcion2"> Activos</a>
+                                <a [routerLink]="['misanuncios']" class="nav-link px-0 opcion2"> Publicados</a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0 opcion2"> Inactivos </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0 opcion2"> Nuevo Anuncio </a>
+                                <a [routerLink]="['/nuevoAnuncio']" class="nav-link px-0 opcion2"> Crear Anuncio </a>
                             </li>
                         </ul>
                     </li>

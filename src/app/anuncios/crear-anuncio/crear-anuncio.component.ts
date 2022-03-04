@@ -1,6 +1,9 @@
 import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/auth/auth.service';
+import { MyAccountService } from 'src/app/my-account/my-account.service';
+import Swal from 'sweetalert2';
 import { anuncio } from '../anuncio.interface';
 import { AnunciosService } from '../anuncios.service';
 
@@ -15,51 +18,84 @@ export class CrearAnuncioComponent implements OnInit {
   @ViewChild('miFormulario') miFormulario!: NgForm;
   
   anuncio:anuncio={
-    autor:{
-      id:1
-    },
-    id:5,
+    id:0,
     img:"",
     titulo:"",
-    descripcion:"",
+    descripcion:"cosas",
     comentarios:[]
 
   }
+  modelo={
+    img:"",
+    titulo:"",
+    descripcion:""
+  }
 
 
-  constructor(private anuncioService:AnunciosService) { }
+  imprime(){
+    console.log(this.modelo)
+  }
+
+
+  constructor(private anuncioService:AnunciosService, private accountService: MyAccountService) { }
 
   ngOnInit(): void {
+    this.getUsuario();
   }
 
   imgValida(): boolean {
-    return this.miFormulario?.controls['img'].invalid 
-            && this.miFormulario?.controls['img'].touched;
-  }
+    const regex:RegExp=/((http:\/\/)|(https:\/\/)).*(\.png|\.jpg|\.jpeg)/gm
+   if(this.modelo.img.length<11 || !regex.test(this.modelo.img)){
+     return false;
+   }
+     return true;
+ }
 
-  tituloValido(): boolean {
-    return this.miFormulario?.controls['titulo'].invalid 
-            && this.miFormulario?.controls['titulo'].touched;
-  }
-  descripcionValida(): boolean {
-    return this.miFormulario?.controls['descripcion'].invalid 
-            && this.miFormulario?.controls['descripcion'].touched;
-  }
+ tituloValido(): boolean {
+   return this.miFormulario?.controls['titulo'].invalid 
+           && this.miFormulario?.controls['titulo'].touched;
+ }
+ descripcionValida(): boolean {
+   return this.miFormulario?.controls['descripcion'].invalid 
+           && this.miFormulario?.controls['descripcion'].touched;
+ }
 
-
+  getUsuario(){
+    const usuario= this.accountService.getDatos();
+  }
 
   guardar(){
-    if(this.miFormulario.invalid){
-      alert("errores")
+    if( !this.imgValida() || this.miFormulario.invalid ){
+      
+      Swal.fire({
+        title:'Formulario no valido',
+        icon: 'error',
+        text:'Compruebe los campos',
+        confirmButtonText:'ok'
+      }
+    );
     }
     else{
-      
+      this.anuncio.img=this.modelo.img;
+      this.anuncio.descripcion=this.modelo.descripcion;
+      this.anuncio.titulo=this.modelo.titulo;
       this.anuncioService.postAnuncio(this.anuncio).subscribe(
         resp=>{
-          alert("guardado");
-        }
+          Swal.fire({
+            title:'Anuncio guardado con éxito',
+            icon: 'success',
+            confirmButtonText:'ok'
+          }
+        );
+        },
       ),error=>{
-        console.log("Error al guardar Anuncio")
+        Swal.fire({
+          title:'Algo ha salido mal...',
+          icon: 'error',
+          text:'Compruebe que el anuncio le pertenece y que los cambios son válidos',
+          confirmButtonText:'ok'
+        }
+      );
       }
       
     }

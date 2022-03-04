@@ -23,7 +23,9 @@
     }
     
 }
-
+.preview{
+    width: 100%;
+}
 .anuncio-page {
     padding: 3% 0 0;
 
@@ -38,7 +40,7 @@
 .imagen{
     margin-left: 7%;
     width: 90%;
-    height: 75%;
+    height: fit-content;
     border: 1px solid black; 
     position: absolute;
 }

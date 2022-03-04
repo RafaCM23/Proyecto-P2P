@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AbstractControl, AsyncValidator, ValidationErrors } from '@angular/forms';
-import { map, Observable } from 'rxjs';
+import { map, Observable , catchError, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +22,9 @@ export class NickOcupadoService implements AsyncValidator{
     .pipe(
       //devuelve 404 si no lo encuentra y 200 si lo encuentra
       map( resp => {
-        console.log(resp);
-        
-        return ( resp!=null ) 
-            ? null
-            : { nickOcupado: true }
-      })
+        return  { emailOcupado: true }
+      }),
+      catchError(()=> of(null))
     );
   }
 }

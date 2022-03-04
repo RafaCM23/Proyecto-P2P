@@ -4,7 +4,7 @@
 		<div class="row text-center login-page" style="max-height: 100vh;">
 			<div class="col-md-12 login-form rounded">
 
-				<form autocomplete="off" [formGroup]="registroForm" > 
+				<form autocomplete="never" [formGroup]="registroForm" > 
 
 					<div class="row">
 						<div class="col-md-12 login-form-header">
@@ -24,7 +24,7 @@
                     <div class="input-group mb-3 login-form-row">
                         <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                         <input type="text" class="form-control"  placeholder="Usuario"
-                         required formControlName="usuario" maxlength="30">
+                         required formControlName="usuario" maxlength="30" >
                       </div>
                       <span class="form-text text-danger"
                 *ngIf="campoEsValido('usuario')">
@@ -93,13 +93,8 @@
 					
 
 				</form>
-        <h2>Form invalid</h2>
-<pre>{{ registroForm.invalid | json }}</pre>
-<h2>Correo errores</h2>
-<pre>{{ registroForm.controls['email'].errors | json }}</pre>
-<h2>Nick errores</h2>
-<pre>{{ registroForm.controls['usuario'].errors | json }}</pre>
 			</div>
+
 		</div>
 	</div>
 

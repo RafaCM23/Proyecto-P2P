@@ -21,24 +21,15 @@ export class MisDatosComponent implements OnInit {
     name:'',
     nickname:'',
     email:'',
-    provincia:'',
-    token:''
+    provincia:''
   };
-  copia:usuario={
-    id:0,
-    name:'',
-    nickname:'',
-    email:'',
-    provincia:'',
-    token:''
-  };
+
   
   imprimeDatos(){
     this.servicio.getDatos().subscribe(
       resp=>{
         console.log(resp);
         this.user=resp;
-        this.copia=resp;
       },error=>{
         console.log(error);
       }

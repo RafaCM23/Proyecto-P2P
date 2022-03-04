@@ -15,14 +15,7 @@ import { NickOcupadoService } from './nick-ocupado.service';
 })
 export class RegisterComponent implements OnInit {
 
-//Si comentamos la linea de validators: this.contra valida y ponemos bien
-//el usuario o el correo el formulario es VALIDO
-
-//Si no comentamos esa linea, cuando la contraseña es valida (la dos) el formulario es VALIDO
-
-
-
-  
+ 
 
   constructor(private router: Router,private userService:UsersService,private authService: AuthService, private fb: FormBuilder,private emailValidator:EmailvalidatorService,
     private nickValidator:NickOcupadoService) { }
@@ -148,8 +141,11 @@ export class RegisterComponent implements OnInit {
     }
     }
    enviarDatos(correo:string,password:string,name:string,nickname:string){      
-      this.userService.register(correo,password,name,nickname).subscribe(data => {
-        this.authService.setToken(JSON.stringify(data["jwt-token"]));
+       
+       this.userService.register(correo,password,name,nickname).subscribe(data => {
+
+        const respuesta=JSON.stringify(data["jwt-token"]);
+        this.authService.setToken(respuesta.slice(1,respuesta.length-1));
         this.router.navigateByUrl('/');
       },
       error=>{
