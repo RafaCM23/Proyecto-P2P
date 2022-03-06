@@ -6,7 +6,7 @@
         <button [routerLink]="['/nuevoAnuncio']" class="btn btn-lg btn-success nuevoAnuncio
         " >Crear anuncio</button>
       </div>
-      <table *ngIf="misAnuncios.length>0"class="table-striped table-hover mt-4 display nowrap" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="table" style="width: 100%;">
+      <table *ngIf="misAnuncios.length>0" class="table-striped table-hover mt-4 display nowrap" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="table" style="width: 100%;">
         <thead>
         <tr>
             <th>ID</th>

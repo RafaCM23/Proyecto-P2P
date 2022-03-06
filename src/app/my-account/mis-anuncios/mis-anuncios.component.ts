@@ -14,7 +14,7 @@ export class MisAnunciosComponent implements OnInit,OnDestroy {
 
   misAnuncios:anuncio[]=[];
   dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject<any>();
+  dtTrigger:Subject<any> = new Subject<any>();
 
   constructor(private servicio: MyAccountService, private anuncioService:AnunciosService) { }
 
@@ -30,6 +30,7 @@ export class MisAnunciosComponent implements OnInit,OnDestroy {
     this.servicio.getAnuncios().subscribe(
       {
         next:resp=>{
+          
           this.misAnuncios=resp;
           this.dtTrigger.next(this.misAnuncios);
         },

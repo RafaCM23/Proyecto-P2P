@@ -16,12 +16,12 @@
               <i class="fa fa-user fa-2x"></i>
             </a>
             <ul class="dropdown-menu ms-auto dropdown-menu-end" aria-labelledby="navbarDropdown" *ngIf="estaRegistrado()">
-              <li><a class="dropdown-item" [routerLink]="['/myaccount/misdatos']" routerLinkActive="router-link-active" >mi cuenta</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/myaccount/misanuncios']">mis anuncios</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/myaccount/misdatos']" routerLinkActive="router-link-active" >Mi cuenta</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/myaccount/misanuncios']">Mis anuncios</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" (click)="logout()" style="color:red">cerrar sesión</a></li>
+              <li><a class="dropdown-item" (click)="logout()" style="color:red">Cerrar sesión</a></li>
             </ul>
             <ul class="dropdown-menu ms-auto dropdown-menu-end" aria-labelledby="navbarDropdown" *ngIf="!estaRegistrado()">
               <li><a class="dropdown-item" [routerLink]="['/login']" routerLinkActive="router-link-active" >Iniciar Sesion</a></li>
