@@ -43,7 +43,7 @@ export class CrearAnuncioComponent implements OnInit {
   ngOnInit(): void {
     this.getUsuario();
   }
-
+//Valida imagen
   imgValida(): boolean {
     const regex:RegExp=/((http:\/\/)|(https:\/\/)).*(\.png|\.jpg|\.jpeg)/gm
    if(this.modelo.img.length<11 || !regex.test(this.modelo.img)){
@@ -51,12 +51,16 @@ export class CrearAnuncioComponent implements OnInit {
    }
      return true;
  }
-
+//Valida titulo
  tituloValido(): boolean {
+  if(this.miFormulario?.controls['titulo']==null){return false}
+
    return this.miFormulario?.controls['titulo'].invalid 
            && this.miFormulario?.controls['titulo'].touched;
  }
+ //Valida descripcion
  descripcionValida(): boolean {
+  if(this.miFormulario?.controls['descripcion']==null){return false}
    return this.miFormulario?.controls['descripcion'].invalid 
            && this.miFormulario?.controls['descripcion'].touched;
  }
@@ -64,7 +68,7 @@ export class CrearAnuncioComponent implements OnInit {
   getUsuario(){
     const usuario= this.accountService.getDatos();
   }
-
+  //guarda el anuncio
   guardar(){
     if( !this.imgValida() || this.miFormulario.invalid ){
       
@@ -80,8 +84,8 @@ export class CrearAnuncioComponent implements OnInit {
       this.anuncio.img=this.modelo.img;
       this.anuncio.descripcion=this.modelo.descripcion;
       this.anuncio.titulo=this.modelo.titulo;
-      this.anuncioService.postAnuncio(this.anuncio).subscribe(
-        resp=>{
+      this.anuncioService.postAnuncio(this.anuncio).subscribe({
+        next:resp=>{
           Swal.fire({
             title:'Anuncio guardado con éxito',
             icon: 'success',
@@ -95,7 +99,7 @@ export class CrearAnuncioComponent implements OnInit {
           } 
       });
 
-        },error=>{
+        },error:error=>{
         Swal.fire({
           title:'Algo ha salido mal...',
           icon: 'error',
@@ -103,7 +107,7 @@ export class CrearAnuncioComponent implements OnInit {
           confirmButtonText:'ok'
         }
       );
-      })
+      }})
     }
 
   }

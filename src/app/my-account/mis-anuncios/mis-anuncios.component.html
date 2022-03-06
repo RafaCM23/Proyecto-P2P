@@ -27,7 +27,7 @@
                 <img src={{anuncio.img}} alt="imagen" class="imagen">
               </div></td>
             <td>{{ anuncio.titulo }}</td>
-            <td>{{ anuncio.descripcion }}</td>
+            <td><p>{{ anuncio.descripcion }}</p></td>
             <td>{{anuncio.comentarios.length}}</td>
             <td><button type="button" class="btn btn-warning" [routerLink]="['/editarAnuncio',anuncio.id]"  >Editar</button></td>
             <td><button type="button" class="btn btn-danger" (click)="borrarAnuncio(anuncio.id)">Borrar</button></td>
@@ -38,6 +38,11 @@
     
     
 </div>
+<div class="boton col-2 offset-6">
+  <button type="button" class="btn btn-success btn-circle " [routerLink]="['/nuevoAnuncio']" ><i class="fa fa-plus"></i>
+</button></div>
 </div>
+
+
 
 

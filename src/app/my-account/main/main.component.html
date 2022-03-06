@@ -1,14 +1,28 @@
 <div class="container" style="margin-right: 0;max-width: 90em;">
   <div class="row ">
-
+    
   <div class="col-4 col-sm-3  col-md-2  d-flex sidebar" >
-    <app-sidebar></app-sidebar>
+    <app-sidebar (evento)="calculaRuta($event)" [hora]="hora"></app-sidebar>
   </div>
        
    <div class="col-6 col-sm-9 col-md-10 d-flex" style="height: 100vh;">
-    <router-outlet></router-outlet>
+    
+  <div class="enlaces">
+    
+   
+      <span *ngFor="let crumb of breadcrumb," (click)="vuelve(crumb)" class="crumb"> 
+        {{crumb}}   > 
+      </span>
+      
+
+      <div class="col-12">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
    </div>
 
 
   </div>
+  
 </div>

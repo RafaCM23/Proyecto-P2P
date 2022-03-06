@@ -45,8 +45,8 @@
                     </div>
                     <div class="form-group">
                         <label for="descripcion" class="etiqueta">Descripción</label><br>
-                        <textarea name="descripcion" id="descripcion" rows="8" aria-describedby="descripcion" name="descripcion" placeholder="Introduzca el la descripción del producto o servicio a vender"
-                        required minlength="10" [(ngModel)]="modelo.descripcion"></textarea>
+                        <textarea  id="descripcion" rows="8" aria-describedby="descripcion" name="descripcion" placeholder="Introduzca el la descripción del producto o servicio a vender"
+                        required minlength="10" maxlength="300" [(ngModel)]="modelo.descripcion"></textarea>
                         <span class="form-text text-danger"
                     *ngIf="descripcionValida()">
                   * La descripción debe tener como mínimo 10 caracteres *

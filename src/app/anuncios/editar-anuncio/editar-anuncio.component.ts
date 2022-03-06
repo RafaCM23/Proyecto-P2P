@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { AnunciosService } from '../anuncios.service';
 import { anuncio, comentario} from '../anuncio.interface';
 import Swal from 'sweetalert2';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-editar-anuncio',
   templateUrl: './editar-anuncio.component.html',
@@ -31,7 +31,7 @@ export class EditarAnuncioComponent implements OnInit {
   }
   id=0;
 
-  constructor(private anuncioService:AnunciosService,private route: ActivatedRoute) { }
+  constructor(private anuncioService:AnunciosService,private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.recogeId();
@@ -47,10 +47,12 @@ export class EditarAnuncioComponent implements OnInit {
   }
 
   tituloValido(): boolean {
+    if(this.miFormulario?.controls['titulo']==null){return false}
     return this.miFormulario?.controls['titulo'].invalid 
             && this.miFormulario?.controls['titulo'].touched;
   }
   descripcionValida(): boolean {
+    if(this.miFormulario?.controls['descripcion']==null){return false}
     return this.miFormulario?.controls['descripcion'].invalid 
             && this.miFormulario?.controls['descripcion'].touched;
   }
@@ -59,11 +61,10 @@ export class EditarAnuncioComponent implements OnInit {
       this.id=params['id'];
     })
   }
-
+  //recoge el anuncio
   getAnuncio(){
     this.anuncioService.getAnuncio(this.id).subscribe(
         resp=>{
-          console.log(resp);
           this.formulario.titulo=resp.titulo;
           this.formulario.descripcion=resp.descripcion;
           this.formulario.img=resp.img;
@@ -79,7 +80,7 @@ export class EditarAnuncioComponent implements OnInit {
         }
     )
   }
-
+  //guarda el anuncio
   guardar(){
 
     if( !this.imgValida() || this.miFormulario.invalid ){
@@ -104,7 +105,11 @@ export class EditarAnuncioComponent implements OnInit {
             icon: 'success',
             confirmButtonText:'ok'
           }
-        );
+        ).then(resultado => {
+          if (resultado.value) {
+              this.router.navigateByUrl("/myaccount/misanuncios")
+          } 
+      });;
         },
         error=>{
           Swal.fire({

@@ -4,7 +4,19 @@ h3{
     font-size: 3em;
     
 }
-
+.card-subtitle{
+    overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+h1 { font-family: "Trebuchet MS", sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: -2px;
+    border-bottom: 2px solid black;
+    text-transform: uppercase; 
+max-width: 27em;}
 .explorar{
     margin-right: 3em;
 }

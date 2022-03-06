@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './AuthGuard';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 
@@ -10,7 +9,7 @@ const routes: Routes = [
   {path:'login',loadChildren:()=>import("./login/login.module").then(m=>m.LoginModule)},
   {path:'register',loadChildren:()=>import("./register/register.module").then(m=>m.RegisterModule)},
   {path:'nuevoAnuncio',loadChildren:()=>import("./anuncios/anuncios.module").then(m=>m.AnunciosModule)},
-  {path:'myaccount',loadChildren:()=>import("./my-account/my-account.module").then(m=>m.MyAccountModule)},
+  {path:'myaccount',loadChildren:()=>import("./my-account/my-account.module").then(m=>m.MyAccountModule),data:{animation: 'HomePage'}},
   {path:'**',component:NotFoundComponent},
 
 ];

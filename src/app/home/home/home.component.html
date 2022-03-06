@@ -1,10 +1,11 @@
 <div class="py-5" style="height: 100vh;">
+ 
   <div class="container">
-
-
+   <h1> La única página de compra-venta sin ánimo de lucro</h1>
     <div class="row hidden-md-up">
+
       <div class="col-md-4 col-sm-6" *ngFor="let anuncio of anuncios">
-        <div class="card" style="height: 95%;">
+        <div class="card" style="height: 95%;" (click)="redirige(anuncio.id)">
           <div class="card-block">
             <img src={{anuncio.img}} alt="producto">
             <h4 class="card-title">{{anuncio.titulo}}</h4>

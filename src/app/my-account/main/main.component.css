@@ -2,3 +2,19 @@
     margin-left: 0!important;
     margin-right: 0!important;
 }
+
+.enlaces{
+    margin-top: 1em;
+}
+.crumb{
+    font-size: 1.2em;
+    color: coral;
+    font-weight: bold;
+
+}
+.crumb:hover{
+    font-size: 1.3em;
+    cursor: pointer;
+    color: white;
+    text-decoration: underline white;
+}

@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  //Envia la peticion de login
   login(){
     
     this.userService.compruebaLogin(this.email,this.password)

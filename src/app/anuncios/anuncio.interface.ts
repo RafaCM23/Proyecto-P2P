@@ -10,10 +10,10 @@ export interface anuncio{
 }
 
 export interface comentario{
-    id:number,
+    id?:number,
     contenido:String,
-    user: usuario,
-    fecha:Date,
+    user?: usuario,
+    fecha?:Date,
 }
 
 export interface usuario{
@@ -22,4 +22,9 @@ export interface usuario{
     nickname:String,
     email:String,
     provincia:String
+}
+
+export interface credenciales{
+    email:String,
+    password:String
 }

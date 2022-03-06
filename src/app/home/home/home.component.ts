@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { anuncio } from 'src/app/anuncios/anuncio.interface';
 import { AnunciosService } from 'src/app/anuncios/anuncios.service';
 
@@ -10,7 +11,7 @@ import { AnunciosService } from 'src/app/anuncios/anuncios.service';
 export class HomeComponent implements OnInit {
 
   anuncios:anuncio[]=[];
-  constructor(private anunciosService: AnunciosService) { }
+  constructor(private anunciosService: AnunciosService, private router: Router) { }
 
   ngOnInit(): void {
     
@@ -22,11 +23,15 @@ export class HomeComponent implements OnInit {
     this.anunciosService.getAnuncios().subscribe(
       resp =>{
         this.anuncios=resp;
-        console.log(this.anuncios);
       },error =>{
         console.log(error);
       }
     )
     
   }
+  redirige(id:number){
+    this.router.navigateByUrl(`verAnuncio/${id}`)
+  }
+
+  
 }

@@ -14,7 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import { MyAccountModule } from './my-account/my-account.module';
 import { RegisterModule } from './register/register.module';
 import { DataTablesModule } from 'angular-datatables';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent
@@ -30,7 +30,8 @@ import { DataTablesModule } from 'angular-datatables';
     SharedModule,
     MyAccountModule,
     RegisterModule,
-    DataTablesModule
+    DataTablesModule,
+    BrowserAnimationsModule
     
   ],
   providers: [],

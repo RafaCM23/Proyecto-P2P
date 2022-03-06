@@ -26,26 +26,26 @@ export class RegisterComponent implements OnInit {
       mayorEdad:false
     })
   }
-
+  //formulario
   registroForm: FormGroup = this.fb.group({
-    nombre: ['',[Validators.required, Validators.minLength(4)]],
+    nombre: ['',[Validators.required, Validators.minLength(4)]],                    //validador externo
     usuario: ['',[Validators.required, Validators.minLength(5),this.usuarioValido],[this.nickValidator]],
     contrasenia: ['',[Validators.required, Validators.minLength(5)]],
     recontrasenia: ['',[Validators.required, Validators.minLength(5)]],
-    email: ['',[Validators.required,this.emailValido],[this.emailValidator]],
+    email: ['',[Validators.required,this.emailValido],[this.emailValidator]],//validador externo
     mayorEdad: [false,Validators.requiredTrue],
     terminos: [false, Validators.requiredTrue],
   }
-  ,{
+  ,{//validadores extra
     validators:[this.contraValida('contrasenia','recontrasenia')],
    }
   )
-
+   //Devuelve si el campo presenta errores
   campoEsValido(campo:string){
     return this.registroForm.controls[campo].errors && this.registroForm.controls[campo].touched;
   }
 
-
+  //comprueba contraseña
   contraValida(psw1:string, psw2:string){
     return (formGroup: AbstractControl): ValidationErrors | null =>{
       const pass1 = formGroup.get(psw1)?.value;
@@ -62,6 +62,8 @@ export class RegisterComponent implements OnInit {
       return null
     }
   }
+
+  //devuelve el tipo de error del email
   get emailErrorMsg(): string {
     
     const errors = this.registroForm.get('email')?.errors!;
@@ -77,6 +79,8 @@ export class RegisterComponent implements OnInit {
 
     return '';
   }
+
+  // devuelve el tipo de error del usuario
   get usuarioErrorMsg(): string {
     
     const errors = this.registroForm.get('usuario')?.errors!;
@@ -91,6 +95,7 @@ export class RegisterComponent implements OnInit {
     return '';
   }
 
+  //comprueba si el campo usuario es validi
   usuarioValido(control:FormControl): ValidationErrors | null{
     
       const user = control?.value;  
@@ -102,6 +107,8 @@ export class RegisterComponent implements OnInit {
       return null
     
 }
+
+//comprueba si el campo email es valido
   emailValido(control:FormControl): ValidationErrors | null{
     
 
@@ -116,11 +123,7 @@ export class RegisterComponent implements OnInit {
       return null
     }
   
- 
-  
-  
-
-
+    //valioda el formulario
     validar(){
 
     if ( this.registroForm.invalid)  {
@@ -140,6 +143,8 @@ export class RegisterComponent implements OnInit {
      this.registroForm.reset();
     }
     }
+
+    //guarda los datos del usuario 
    enviarDatos(correo:string,password:string,name:string,nickname:string){      
        
        this.userService.register(correo,password,name,nickname).subscribe(data => {

@@ -1,0 +1,61 @@
+
+<div class="container" style="height: 150vh;">
+        
+    <div class="row text-center anuncio-page" >
+        <div class="col-md-12 anuncio-form rounded "  style="min-height: 140vh;">
+           
+         <div class="row d-flex">
+           <div class="col-12 col-sm-6">
+            <div class="wraper mt-5">
+                <div class="imagen" > 
+                <img [src]="anuncio.img" alt="imagen" class="preview">
+                </div>
+            </div>
+           </div>
+             <div class="col-12 col-sm-6">
+                    <div class="titulo-wraper">
+                      <p class="titulo">{{anuncio.titulo}}</p>
+                    </div>
+                    <div class="descripcion-wraper">
+                        <p class="descripcion">
+                            {{anuncio.descripcion}}
+                        </p>
+                    </div> 
+                    <div class="datos-wraper" *ngIf="registrado()">
+                        <p>Email de contacto : {{autor}}</p>
+                    </div>     
+                               
+            </div>
+           
+         </div>
+         <hr> 
+         <div class="comentarios">
+         <h2>Comentarios</h2>
+        <div *ngFor="let comentario of anuncio.comentarios">
+            <div class="comentario-box ">
+                <div class="fecha">
+                    {{cortaFecha(comentario.fecha!)}}
+                </div>
+                <div class="contenido">
+                    {{comentario.contenido}}
+                </div>
+            </div>
+            
+           
+        </div>
+        <div class="nuevo-box">
+            <textarea class="nuevoComentario" name="contenido" id="cotenido"  rows="10" placeholder="Escribe aqui tu comentario"
+            [(ngModel)]="nuevoComentario"></textarea>
+        </div>
+        <button type="button" (click)="enviarComentario()" class="btn btn-success btn-lg">Enviar comentario</button>
+        </div>
+    </div> 
+       
+    </div>
+      
+</div>
+<script>
+    
+</script>
+    
+

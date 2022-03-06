@@ -49,3 +49,25 @@ img{
     transform: translateY(-10px);
     transition: all .20s ease-in-out;
 }
+.boton{
+    float: right;
+    margin-top: 5%;
+    text-align: right;
+    margin-right: 5%;
+    width: 20px;
+}
+p{
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+.btn-circle {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 30px;
+    line-height: 1.428571429;
+    border-radius: 40px;
+  }

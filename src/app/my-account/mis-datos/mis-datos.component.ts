@@ -28,10 +28,14 @@ export class MisDatosComponent implements OnInit {
   imprimeDatos(){
     this.servicio.getDatos().subscribe(
       resp=>{
-        console.log(resp);
         this.user=resp;
       },error=>{
-        console.log(error);
+        Swal.fire({
+          title:'Error al recuperar los datos',
+          icon: 'error',
+          confirmButtonText:'ok'
+        }
+      );
       }
     )
   }

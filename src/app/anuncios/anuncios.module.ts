@@ -5,18 +5,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { CrearAnuncioComponent } from './crear-anuncio/crear-anuncio.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
 import { FormsModule, NgForm } from '@angular/forms';
+import { VerAnuncioComponent } from './ver-anuncio/ver-anuncio.component';
 
 
 const routes: Routes = [
 
   {path:'nuevoAnuncio',component:CrearAnuncioComponent},
-  {path:'editarAnuncio/:id',component:EditarAnuncioComponent}
-
+  {path:'editarAnuncio/:id',component:EditarAnuncioComponent},
+  {path:'verAnuncio/:id',component:VerAnuncioComponent}
+  
 ];
 
 @NgModule({
   declarations: [  
-    CrearAnuncioComponent, EditarAnuncioComponent
+    CrearAnuncioComponent, EditarAnuncioComponent, VerAnuncioComponent
   ],
   imports: [
     CommonModule,

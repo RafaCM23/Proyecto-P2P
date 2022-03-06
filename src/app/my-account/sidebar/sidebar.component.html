@@ -2,7 +2,7 @@
 <div class="container-fluid barra" >
     <div class="row flex-nowrap" style="height: 150vh;">
         <div class="col-auto bg-dark">
-            <div class="align-items-center opciones">
+            <div class="align-items-center opciones" >
 
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0  align-items-sm-start"  id="menu">
                     
@@ -10,28 +10,26 @@
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle"   >
                            <span class="ms-1  opcion1"> Mi cuenta</span> </a>
                         <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                            <li class="w-100">
+                            <li class="w-100" (click)="cambio()">
                                 <a [routerLink]="['misdatos']" class="nav-link px-0 opcion2"> Mis datos </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0 opcion2"> Otros... </a>
                             </li>
                         </ul>
                     </li>
                     
-                
+              
                     <li class="mt-2">
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                              <span class="ms-1  opcion1"> Mis anuncios</span></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                            <li class="w-100">
+                            <li class="w-100" (click)="cambio()">
                                 <a [routerLink]="['misanuncios']" class="nav-link px-0 opcion2"> Publicados</a>
                             </li>
-                            <li>
+                            <li (click)="cambio()">
                                 <a [routerLink]="['/nuevoAnuncio']" class="nav-link px-0 opcion2"> Crear Anuncio </a>
                             </li>
                         </ul>
                     </li>
+                    <li> <p class="hora">{{hora}}</p></li>
                     
                 </ul>
                 
