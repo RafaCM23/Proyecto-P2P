@@ -18,11 +18,11 @@ export class NickOcupadoService implements AsyncValidator{
       "nickname":nickname
     }
     const cabecera = new HttpHeaders({'Content-Type':'application/json'});
-    return this.httpClient.post<any[]>('http://localhost:8080/nickOcupado',body,{headers:cabecera})
+    return this.httpClient.post('http://localhost:8080/nickOcupado',body,{headers:cabecera})
     .pipe(
       //devuelve 404 si no lo encuentra y 200 si lo encuentra
       map( resp => {
-        return  { emailOcupado: true }
+        return  { nickOcupado: true }
       }),
       catchError(()=> of(null))
     );

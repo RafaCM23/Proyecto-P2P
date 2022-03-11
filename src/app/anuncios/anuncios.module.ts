@@ -6,12 +6,13 @@ import { CrearAnuncioComponent } from './crear-anuncio/crear-anuncio.component';
 import { EditarAnuncioComponent } from './editar-anuncio/editar-anuncio.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { VerAnuncioComponent } from './ver-anuncio/ver-anuncio.component';
+import { AuthGuard } from '../AuthGuard';
 
 
 const routes: Routes = [
 
-  {path:'nuevoAnuncio',component:CrearAnuncioComponent},
-  {path:'editarAnuncio/:id',component:EditarAnuncioComponent},
+  {path:'nuevoAnuncio',canActivate:[AuthGuard],component:CrearAnuncioComponent},
+  {path:'editarAnuncio/:id',canActivate:[AuthGuard],component:EditarAnuncioComponent},
   {path:'verAnuncio/:id',component:VerAnuncioComponent}
   
 ];

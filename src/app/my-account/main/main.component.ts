@@ -31,8 +31,6 @@ export class MainComponent implements OnInit {
   vuelve(ruta:string){
     
     if(ruta!=this.breadcrumb[0]){
-      console.log(this.rutaCompleta)
-
       this.router.navigateByUrl(this.rutaCompleta)
     }else{
       this.router.navigateByUrl(ruta);
@@ -44,7 +42,10 @@ export class MainComponent implements OnInit {
     var d = new Date();
     var hours = d.getHours();
     var minutes = d.getMinutes()
+    if(minutes<10){this.hora=`${hours}:0${minutes}`}
+   else{
     this.hora=(hours+":"+minutes)
+   }
   }
 
 }

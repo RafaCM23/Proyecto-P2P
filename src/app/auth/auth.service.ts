@@ -35,10 +35,9 @@ export class AuthService {
   }
   //elimina el token = logout
   delToken(){
+    
     this.cookies.delete("tokenP2P");
-    if(this.getToken!=null){
-      this.cookies.delete("tokenP2P");
-    }
+    this.cookies.deleteAll("tokenP2P");
   }
 
 

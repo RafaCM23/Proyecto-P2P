@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 
@@ -9,10 +9,11 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  estaRegistrado:boolean=false;
   constructor(private authService: AuthService,private router:Router) { }
 
   ngOnInit(): void {
-    this.estaRegistrado();
+    this.isRegistrado();
   }
 
   logout(){
@@ -24,8 +25,8 @@ export class NavbarComponent implements OnInit {
     
   }
 
-  estaRegistrado(){
-    return this.authService.compruebaToken();
+  isRegistrado(){
+    this.estaRegistrado= this.authService.compruebaToken();
 
   }
 }

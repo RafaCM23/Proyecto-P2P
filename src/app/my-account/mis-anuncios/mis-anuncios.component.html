@@ -1,18 +1,13 @@
 
-<div class="row text-center misanuncios-page container-fluid" >
-    <div class="col-md-12 misanuncios-form rounded d-flex">
-      <div *ngIf="misAnuncios.length==0" class="text-center">
-        <h1>No Hay Anuncios Todavia</h1>
-        <button [routerLink]="['/nuevoAnuncio']" class="btn btn-lg btn-success nuevoAnuncio
-        " >Crear anuncio</button>
-      </div>
-      <table *ngIf="misAnuncios.length>0" class="table-striped table-hover mt-4 display nowrap" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="table" style="width: 100%;">
+<div class="row text-center misanuncios-page " >
+    <div class="col-md-12 misanuncios-form rounded ">
+     <div class="sobreTabla container">
+   
+      <table class="table-striped table-hover mt-4" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="table" >
         <thead>
         <tr>
-            <th>ID</th>
             <th>Imagen</th>
             <th>Titulo</th>
-            <th>Descripcion</th>
             <th>Comentarios</th>
             <th>Editar</th>
             <th>Borrar</th>
@@ -21,13 +16,12 @@
         <tbody>
         <tr *ngFor="let anuncio of misAnuncios">
            
-            <td>{{ anuncio.id }}</td>
             <td style="width: 20%;height: 30%;">
               <div class="imgWrapper">
                 <img src={{anuncio.img}} alt="imagen" class="imagen">
               </div></td>
             <td>{{ anuncio.titulo }}</td>
-            <td><p>{{ anuncio.descripcion }}</p></td>
+
             <td>{{anuncio.comentarios.length}}</td>
             <td><button type="button" class="btn btn-warning" [routerLink]="['/editarAnuncio',anuncio.id]"  >Editar</button></td>
             <td><button type="button" class="btn btn-danger" (click)="borrarAnuncio(anuncio.id)">Borrar</button></td>
@@ -35,14 +29,18 @@
         </tr>
         </tbody>
     </table>
-    
+  </div>
     
 </div>
-<div class="boton col-2 offset-6">
+<div *ngIf="misAnuncios.length<1" class="text-center">
+  <h1>No Hay Anuncios Todavia</h1>
+  <button [routerLink]="['/nuevoAnuncio']" class="btn btn-lg btn-success nuevoAnuncio
+  " >Crear anuncio</button>
+</div>
+<div class="boton col-2 offset-6" *ngIf="misAnuncios.length>0">
   <button type="button" class="btn btn-success btn-circle " [routerLink]="['/nuevoAnuncio']" ><i class="fa fa-plus"></i>
 </button></div>
 </div>
-
 
 
 

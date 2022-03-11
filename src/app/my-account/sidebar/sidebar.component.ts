@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit{
 
   @Input () hora : String = '12:00';
   @Output () evento = new EventEmitter<string>();
-
+//Cambiar breadcrumb al hacer click
   constructor(private router:Router) { }
   ruta:string='';
 

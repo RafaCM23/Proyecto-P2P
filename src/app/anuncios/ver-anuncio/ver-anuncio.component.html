@@ -33,8 +33,11 @@
          <h2>Comentarios</h2>
         <div *ngFor="let comentario of anuncio.comentarios">
             <div class="comentario-box ">
-                <div class="fecha">
+                <div class="fecha" *ngIf="comentario.fecha">
                     {{cortaFecha(comentario.fecha!)}}
+                </div>
+                <div class="fecha" *ngIf="!comentario.fecha">
+                    Ahora mismo
                 </div>
                 <div class="contenido">
                     {{comentario.contenido}}
@@ -43,11 +46,12 @@
             
            
         </div>
-        <div class="nuevo-box">
+        <div *ngIf="registrado()" class="nuevo-box">
             <textarea class="nuevoComentario" name="contenido" id="cotenido"  rows="10" placeholder="Escribe aqui tu comentario"
             [(ngModel)]="nuevoComentario"></textarea>
+            <button type="button" (click)="enviarComentario()" class="btn btn-success btn-lg">Enviar comentario</button>
         </div>
-        <button type="button" (click)="enviarComentario()" class="btn btn-success btn-lg">Enviar comentario</button>
+        
         </div>
     </div> 
        

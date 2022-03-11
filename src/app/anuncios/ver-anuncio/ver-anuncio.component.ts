@@ -37,7 +37,6 @@ export class VerAnuncioComponent implements OnInit {
     this.anuncioService.whoOwns(this.id).subscribe({
       next:resp=>{
         this.autor= resp.email;
-        console.log(this.autor)
       }
       ,error:error=>{
         this.autor='';
@@ -90,6 +89,8 @@ export class VerAnuncioComponent implements OnInit {
       }
 
       else{
+       
+
         const comentario:comentario={
         contenido:this.nuevoComentario
         }
@@ -103,12 +104,17 @@ export class VerAnuncioComponent implements OnInit {
               })
               .then(resultado => {
                   if (resultado.value) {
-                      window.location.reload();
+                      this.anuncio.comentarios.push(comentario)
                   } 
               });
           },
           error:error=>{
-            console.log(error);
+            Swal
+            .fire({
+                title: "Error al publicar el comentario",
+                icon: 'error',
+                confirmButtonText: "ok"
+            });
           }
         })
       }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { anuncio } from 'src/app/anuncios/anuncio.interface';
 import { AnunciosService } from 'src/app/anuncios/anuncios.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +13,7 @@ import { AnunciosService } from 'src/app/anuncios/anuncios.service';
 export class HomeComponent implements OnInit {
 
   anuncios:anuncio[]=[];
+
   constructor(private anunciosService: AnunciosService, private router: Router) { }
 
   ngOnInit(): void {
@@ -24,7 +27,12 @@ export class HomeComponent implements OnInit {
       resp =>{
         this.anuncios=resp;
       },error =>{
-        console.log(error);
+        Swal.fire({
+          title:'No se han podido recuperar anuncios',
+          icon: 'error',
+          confirmButtonText:'ok'
+        }
+      );
       }
     )
     

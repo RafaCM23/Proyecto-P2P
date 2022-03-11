@@ -9,6 +9,8 @@ import { AuthService } from '../auth/auth.service';
 })
 export class MyAccountService {
 
+  baseurl="http://localhost:8080/";
+  
   constructor(private http: HttpClient,private authService: AuthService) { }
 
 
@@ -18,7 +20,7 @@ export class MyAccountService {
     .set('Authorization',`Bearer ${this.authService.getToken()}` || '');
      
       
-    const url="http://localhost:8080/misdatos"
+    const url=this.baseurl+'misdatos'
     return this.http.get<usuario>(url,{headers:cabecera});
   }
 
@@ -27,7 +29,7 @@ export class MyAccountService {
     const cabecera = new HttpHeaders()
     .set('Authorization',`Bearer ${this.authService.getToken()}` || '');
     const body=usuario;
-    const url='http://localhost:8080/misdatos'
+    const url=this.baseurl+'misdatos'
     return this.http.put(url,body,{headers:cabecera});
   }
 
@@ -35,7 +37,7 @@ export class MyAccountService {
   getAnuncios(){
     const cabecera = new HttpHeaders()
     .set('Authorization',`Bearer ${this.authService.getToken()}` || '');
-    const url='http://localhost:8080/misanuncios'
+    const url=this.baseurl+'misanuncios'
     return this.http.get<anuncio[]>(url,{headers:cabecera});
   }
 

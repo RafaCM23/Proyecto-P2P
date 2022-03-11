@@ -9,10 +9,11 @@ export class UsersService {
 
   constructor(private http: HttpClient, private cookies: CookieService) { }
 
+  baseurl="http://localhost:8080/";
 
   compruebaLogin(email:string, password:string):Observable<any>{
     
-    const url = 'http://localhost:8080/auth/login';
+    const url = this.baseurl+'auth/login';
     const body = {
       'email': email,
       'password': password 
@@ -22,7 +23,7 @@ export class UsersService {
   }
 
   register(email:string, password:string,nombre:string,usuario:string): Observable<any> {
-    const url = 'http://localhost:8080/auth/register';
+    const url = this.baseurl+'auth/register';
     const body = {
       'name': nombre,
       'nickname': usuario,

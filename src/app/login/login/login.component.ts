@@ -32,10 +32,12 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/'])
       .then(() => {
         window.location.reload();
-      });
-    },error=>{Swal.fire({
-      title:"Error al hacer logging",
+        });
+    },error=>{
+      Swal.fire({
+      title:"Error al iniciar sesion",
       icon: 'error',
+      text:'Compruebe el email y la contraseña',
       confirmButtonText:'Ok'
     }
     );}

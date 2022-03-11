@@ -128,7 +128,13 @@ export class RegisterComponent implements OnInit {
 
     if ( this.registroForm.invalid)  {
       this.registroForm.markAllAsTouched();
-      console.log("invalido");
+      Swal.fire({
+        title:'Erro al registrar usuario',
+        text:'Compruebe los campos',
+        icon: 'error',
+        confirmButtonText:'Ok'
+      }
+    );
       return
     }
     else{
@@ -151,7 +157,7 @@ export class RegisterComponent implements OnInit {
 
         const respuesta=JSON.stringify(data["jwt-token"]);
         this.authService.setToken(respuesta.slice(1,respuesta.length-1));
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/myaccount/misdatos');
       },
       error=>{
         Swal.fire({
